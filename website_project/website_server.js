@@ -6,6 +6,7 @@ app.use(express.static('public'));
 
 const plants = ['Cactus', 'Flower', 'Tree', "Bush"];
 
+
 app.get("/plants", (req, res) => {
     res.send(plants)
 });

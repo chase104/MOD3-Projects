@@ -6,6 +6,7 @@ let ulElement = document.querySelector('.ul-container');
 let randomButton = document.getElementById('random-button');
 
 randomButton.addEventListener('click', () => {
+    window.location = "./about.html";
     fetch('http://localhost:3000/random').then((res) => {
         res.json().then((finalData) => {
             let myLi = document.createElement('li');
