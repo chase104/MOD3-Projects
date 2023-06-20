@@ -1,28 +1,28 @@
 /* eslint-disable no-undef */
 const express = require('express');
 const dotenv = require('dotenv');
-dotenv.config();
+dotenv.config(); 
+// lets us do process.env (get variables from .env file)
+const { getFruits } = require('./Controllers/fruits.js');
 
 const Fruit = require('./Models/Fruit.js');
 // now I can use process.env.VARIABLE_NAME
 // when my server starts, I want to connect to my database
 require('./config/database.js')
+
+
 const app = express();
 app.use(express.json());
 
-
 // GET DATA
-app.get('/fruits', async (req, res) => {
-    let databaseResponse = await Fruit.find();
-    res.send(databaseResponse)
-});
+app.get('/fruits', getFruits);
 
 // CREATE DATA
 app.post('/fruits', async (req, res) => {
     console.log(req.body);
     let databaseResponse = await Fruit.create(req.body);
     res.send(databaseResponse)
-})
+});
 
 // UPDATE DATA
 app.put('/fruits/:idOfFruit/:newName', async (req, res) => {
