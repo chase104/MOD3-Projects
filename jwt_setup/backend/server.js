@@ -28,9 +28,10 @@ const verifyToken = (req, res, next) => {
         const decoded = jwt.verify(encodedToken, process.env.TOKEN_SECRET);
         console.log(decoded);
         next()
-        res.send("good route")
+   
     } catch (err) {
-        console.log(err)
+        res.status(401).json({message: "access denied - not logged in"})
+
     }
     // decode token
 
@@ -74,13 +75,7 @@ app.post('/users/login', async (req, res) => {
 
 
 app.get('/users/friends', verifyToken, async (req, res) => {
-    console.log("hitting route");
-    // get data from params
-    // get data from queries
-    // get data from req.body
-    // get data from header
-  
-
+    res.send("You got in the route");
 })
 
 app.listen(4001, () => {

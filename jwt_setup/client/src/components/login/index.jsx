@@ -23,6 +23,8 @@ const Login = () => {
         })
 
         console.log(response);
+        const jwtToken = response.data;
+        localStorage.setItem('jwt-token', jwtToken);
         // Reset the form
         // setFormData({ username: '', email: '', password: '' });
       };
